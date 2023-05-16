@@ -1,10 +1,9 @@
 const app = require('express')();
 const server = require('http').createServer(app);
+const serve_static = require('serve-static'); 
 const io = require('socket.io')(server);
 
-app.get('/', function (req, res) {
-    res.sendFile(`${__dirname}/public/index.html`);
-});
+app.use(serve_static(__dirname + "/../public"));
 
 io.on('connection', function (socket) {
     console.log("un utilisateur s'est connecté");
