@@ -7,6 +7,34 @@
     <title>Messagerie</title>
 </head>
 <body>
-    
+    <div class="main-page">
+        <div class="connect-border">
+
+        </div>
+        <div class="chat-section">
+            <div class="message">
+                <input type="text" id="msg" autocomplete="off"><button>send</button>
+            </div>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function () {
+            var socket = io();
+
+            $('form').submit(function (event) {
+                event.preventDefault();
+
+                socket.emit("chat-msg", $("#msg").val());
+                $("#msg").val("");
+                return false;
+            });
+
+            socket.on('chat-msg', function (msg) {
+                $('#message').append($("<p>").text(msg))
+            });
+        });
+    </script>
 </body>
 </html>
