@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="styles/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Messagerie</title>
 </head>
 <body>
     <div class="main-page">
-        <div class="connect-border">
+        <div class="avatar-border">
 
         </div>
-        <div class="chat-section">
-            <div class="message">
-                <input type="text" id="msg" autocomplete="off"><button>send</button>
-            </div>
+        <div id="chat-section"></div>
+        <div class="message">
+            <form class="input-field" action="">
+                <input type="text" id="text-field" autocomplete="off"><button>send</button>
+            </form>
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
@@ -26,13 +28,13 @@
             $('form').submit(function (event) {
                 event.preventDefault();
 
-                socket.emit("chat-msg", $("#msg").val());
-                $("#msg").val("");
+                socket.emit("chat-msg", $("#text-field").val());
+                $("#text-field").val("");
                 return false;
             });
 
             socket.on('chat-msg', function (msg) {
-                $('#message').append($("<p>").text(msg))
+                $('#chat-section').append($("<p>").text(msg))
             });
         });
     </script>
