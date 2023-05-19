@@ -11,6 +11,11 @@
 
 <body>
     <div class="main-page">
+        <div class="top-page">
+            <div class="dark-theme-switch">
+                <img id="dark-theme-icon" src="styles/ressources/moon.png">
+            </div>
+        </div>
         <div class="avatar-border">
 
         </div>
@@ -28,12 +33,12 @@
         <form class="chat-form">
             <div class="container-inputs-stuffs">
                 <div class="files-logo-cont">
-                    <img src="styles/ressources/paperclip.svg">
+                    <img id="paperclip-svg" src="styles/ressources/paperclip.svg">
                 </div>
                 <div class="group-inp">
                     <textarea id="comment" placeholder="Enter your message here" minlength="1"
                         maxlength="2000"></textarea>
-                    <img src="styles/ressources/smile.svg">
+                    <img id="smile-svg" src="styles/ressources/smile.svg">
                 </div>
                 <div class="submit-msg-btn">
                     <img id="send-svg" src="styles/ressources/send.svg">
@@ -46,6 +51,7 @@
     <script>
         $(function () {
             var socket = io();
+            /* keypress Enter message*/
             $('#comment').keypress(function (event) {
                 if (event.which == 13 && !event.shiftKey) {
                     var comment = $.trim($("#comment").val());
@@ -56,6 +62,7 @@
                     }
                 }
             });
+            /* click Button message*/
             $('#send-svg').click(function (event) {
                 var comment = $.trim($("#comment").val());
                 if (comment != "") {
@@ -64,20 +71,27 @@
                     return false;
                 }
             });
-
-            $('form').submit(function (event) {
-                event.preventDefault();
-
-                socket.emit("chat-msg", $("#text-field").val());
-
-                $("#text-field").val("");
-                return false;
-            });
-
+            /* message Submit into the html*/
             socket.on('chat-msg', function (msg) {
                 console.log("message : " + msg);
                 //$('.conversation').append($("<img src='ressources/avatar2.jpg'>"));
                 $('.conversation').append($('.left').append($("<p>").text(msg)));
+            });
+            /* dark theme switch*/
+            $('#dark-theme-icon').click(function (event) {
+                document.body.classList.toggle("dark-theme")
+                if (document.body.classList.contains("dark-theme")) {
+                    $("#dark-theme-icon").attr("src", "styles/ressources/sun.png");
+                    $("#paperclip-svg").attr("src", "styles/ressources/white-paperclip.svg");
+                    $("#smile-svg").attr("src", "styles/ressources/white-smile.svg");
+                    $("#send-svg").attr("src", "styles/ressources/white-send.svg");
+                }
+                else {
+                    $("#dark-theme-icon").attr("src", "styles/ressources/moon.png");
+                    $("#paperclip-svg").attr("src", "styles/ressources/paperclip.svg");
+                    $("#smile-svg").attr("src", "styles/ressources/smile.svg");
+                    $("#send-svg").attr("src", "styles/ressources/send.svg");
+                }
             });
         });
     </script>

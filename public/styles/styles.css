@@ -6,6 +6,21 @@
   padding: 0;
 }
 
+
+:root {
+  --primary-color: #ffffff;
+  --secondary-color: #ebedef;
+  --solid-border: rgba(51, 51, 51, 0.2);
+  --text-color: #000;
+}
+
+.dark-theme {
+  --primary-color: #313338;
+  --secondary-color: #383a40;
+  --text-color: #ffffff;
+}
+
+
 body {
   font: Arial, Helvetica, sans-serif;
   height: 100vh;
@@ -15,21 +30,49 @@ body {
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  border-radius: 25px;
-  box-shadow: 0 30px 70px 0px rgba(0, 0, 0, 0.2);
+  background-color: var(--primary-color);
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
   position: relative;
 }
 
+/* PAGE TOP */
+
+.top-page {
+  position: fixed;
+  top: 0;
+  right: 0;
+  flex-shrink: 0;
+  width: 90%;
+  height: 40px;
+  background: var(--secondary-color);
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--solid-border);
+}
+
+.dark-theme-switch {
+  width: 100px;
+  display: flex;
+  align-items: center;
+
+}
+
+.dark-theme-switch img {
+  width: 30px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+/* AVATAR */
 .avatar-border {
   width: 10%;
   height: 100%;
   position: absolute;
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  border-right: 1px solid var(--solid-border);
   left: 0px;
-  background: #fff;
+  background: var(--secondary-color);
 }
 
 /* CHAT SECTION */
@@ -42,9 +85,13 @@ body {
   overflow: hidden;
 }
 
+textarea {
+  background: var(--primary-color);
+}
+
 .talk {
   margin: 20px 0;
-  color: #f1f1f1;
+  color: var(--primary-color);
   display: flex;
   align-items: center;
   font-size: 18px;
@@ -69,13 +116,14 @@ body {
 
 .right p {
   margin-right: 10px;
-  background: #0078ff;
+  background: var(--secondary-color);
+  background: var(--text-color);
 }
 
 .left p {
   margin-left: 10px;
-  background: rgb(216, 216, 216);
-  color: #000;
+  background: var(--secondary-color);
+  color: var(--text-color);
 }
 
 /* **FORM** */
@@ -88,14 +136,14 @@ body {
   width: 90%;
   height: 90px;
   border-radius: 25px;
-  background: #eee;
+  background: var(--secondary-color);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .container-inputs-stuffs {
-  background: #fff;
+  background: var(--primary-color);
   display: flex;
   width: 90%;
   height: 60px;
@@ -144,7 +192,7 @@ body {
 }
 
 .submit-msg-btn {
-  background: #fff;
+  background: var(--primary-color);
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
   width: 70px;
@@ -159,7 +207,7 @@ body {
 .submit-msg-btn img:hover,
 .group-inp img:hover,
 .files-logo-cont img:hover {
-  background-color: #ccc;
+  background-color: var(--secondary-color);
 }
 
 .submit-msg-btn img {
