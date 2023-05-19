@@ -1,44 +1,94 @@
-html,body{
-    margin: 0;
-    padding: 0;
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.main-page{
-    height: 100%;
-    width: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
-    position: absolute; 
+body {
+  font: Arial, Helvetica, sans-serif;
+  height: 100vh;
 }
 
-.avatar-border{
-    width: 5%;
-    height: 100%;
-    position: absolute;
-    left: 0px;
-    background: #fff;
+.main-page {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
 }
 
+.avatar-border {
+  width: 80PX;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  background: #fff;
+}
+
+/* CHAT SECTION */
+.conversation {
+  width: 70%;
+  margin: 0 auto;
+  display: block;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  background-color: #f2f2f2;
+}
+
+.talk {
+  margin: 20px 0;
+  color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  width: 50%;
+}
+
+.talk p {
+  padding: 15px;
+  line-height: 25px;
+  border-radius: 25px;
+}
+
+.right {
+  margin-left: auto;
+}
+
+.right p {
+  margin-right: 10px;
+  background: #0078ff;
+}
+
+.left p {
+  margin-left: 10px;
+  background: rgb(216, 216, 216);
+  color: #000;
+}
+
+/*INPUT FIELD */
 .message {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 90%;
-    background-color: #f2f2f2;
-    padding: 20px;
-  }
-  
-  .input-field {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .input-field input[type="text"] {
-    flex-grow: 1;
-    padding: 10px;
-    margin-right: 10px;
-  }
-  
-  .input-field button {
-    padding: 10px 20px;
-  }
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 90%;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.input-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-field input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.input-field button {
+  padding: 10px 20px;
+}
