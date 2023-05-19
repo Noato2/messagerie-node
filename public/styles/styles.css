@@ -79,7 +79,7 @@ body {
 .conversation {
   width: 70%;
   margin: 0 auto;
-  display: flex;
+  display: block;
   flex-direction: column;
   justify-content: flex-end;
   overflow-y: scroll;
@@ -88,6 +88,7 @@ body {
 
 textarea {
   background: var(--primary-color);
+  color: var(--text-color);
 }
 
 .talk {
