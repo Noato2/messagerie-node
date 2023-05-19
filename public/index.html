@@ -16,20 +16,54 @@
         </div>
         <div class="conversation">
             <div class="talk left">
-
+                <img src="styles/ressources/avatar2.jpg">
+                <p>Lorem ipsum dolor sit amet.</p>
+                < <div class="talk right">
             </div>
-            <div class="talk right"></div>
-
         </div>
-        <div class="message">
-
-        </div>
+        <!-- <div class="message">
+            <textarea id="comment" placeholder="Enter your message here" minlength="1" maxlength="2000"></textarea>
+            <img src="ressources/smile.svg">
+        </div> -->
+        <form class="chat-form">
+            <div class="container-inputs-stuffs">
+                <div class="files-logo-cont">
+                    <img src="styles/ressources/paperclip.svg">
+                </div>
+                <div class="group-inp">
+                    <textarea id="comment" placeholder="Enter your message here" minlength="1"
+                        maxlength="2000"></textarea>
+                    <img src="styles/ressources/smile.svg">
+                </div>
+                <div class="submit-msg-btn">
+                    <img id="send-svg" src="styles/ressources/send.svg">
+                </div>
+            </div>
+        </form>
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
         $(function () {
             var socket = io();
+            $('#comment').keypress(function (event) {
+                if (event.which == 13 && !event.shiftKey) {
+                    var comment = $.trim($("#comment").val());
+                    if (comment != "") {
+                        socket.emit("chat-msg", comment);
+                        $("#comment").val("");
+                        return false;
+                    }
+                }
+            });
+            $('#send-svg').click(function (event) {
+                var comment = $.trim($("#comment").val());
+                if (comment != "") {
+                    socket.emit("chat-msg", comment);
+                    $("#comment").val("");
+                    return false;
+                }
+            });
 
             $('form').submit(function (event) {
                 event.preventDefault();
@@ -42,7 +76,8 @@
 
             socket.on('chat-msg', function (msg) {
                 console.log("message : " + msg);
-                $('.talk left').append($("<p>").text(msg))
+                //$('.conversation').append($("<img src='ressources/avatar2.jpg'>"));
+                $('.conversation').append($('.left').append($("<p>").text(msg)));
             });
         });
     </script>
