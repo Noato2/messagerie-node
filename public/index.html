@@ -20,11 +20,6 @@
 
         </div>
         <div class="conversation">
-            <div class="talk left">
-                <img src="styles/ressources/avatar2.jpg">
-                <p>Lorem ipsum dolor sit amet.</p>
-                < <div class="talk right">
-            </div>
         </div>
         <form class="chat-form">
             <div class="container-inputs-stuffs">
@@ -70,9 +65,21 @@
             /* message Submit into the html*/
             socket.on('chat-msg', function (msg) {
                 console.log("message : " + msg);
-                //$('.conversation').append($("<img src='styles/ressources/avatar2.jpg'>"));
-                $('.conversation').append($('.left').append($("<p>").text(msg)));
+                appendMessage(msg);
             });
+
+            var appendMessage = function (message) {
+                var messageContainer = $("<div>").addClass("talk left");
+                var messageAvatar = $("<img>").attr('src', 'styles/ressources/avatar2.jpg');
+                var messageText = $("<p>").text(message);
+
+                messageContainer.append(messageAvatar);
+                messageContainer.append(messageText);
+                console.log(messageContainer)
+                $(".conversation").append(messageContainer);
+                $(".conversation").scrollTop($(".conversation")[0].scrollHeight);
+            }
+
             /* dark theme switch*/
             $('#dark-theme-icon').click(function (event) {
                 document.body.classList.toggle("dark-theme")
@@ -89,6 +96,8 @@
                     $("#send-svg").attr("src", "styles/ressources/send.svg");
                 }
             });
+
+            appendMessage("salut");
         });
     </script>
 </body>
