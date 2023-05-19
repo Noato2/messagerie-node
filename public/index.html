@@ -26,10 +26,6 @@
                 < <div class="talk right">
             </div>
         </div>
-        <!-- <div class="message">
-            <textarea id="comment" placeholder="Enter your message here" minlength="1" maxlength="2000"></textarea>
-            <img src="ressources/smile.svg">
-        </div> -->
         <form class="chat-form">
             <div class="container-inputs-stuffs">
                 <div class="files-logo-cont">
@@ -74,7 +70,7 @@
             /* message Submit into the html*/
             socket.on('chat-msg', function (msg) {
                 console.log("message : " + msg);
-                //$('.conversation').append($("<img src='ressources/avatar2.jpg'>"));
+                //$('.conversation').append($("<img src='styles/ressources/avatar2.jpg'>"));
                 $('.conversation').append($('.left').append($("<p>").text(msg)));
             });
             /* dark theme switch*/
