@@ -10,6 +10,35 @@
 </head>
 
 <body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        var socket = io();
+        var me;
+        var loginCheck = function () {
+            socket.emit('login', {
+                pseudo: $('#msg-log').val(),
+                mdp: $('#mdp-log').val(),
+                avatar: "img"
+            });
+        }
+
+        var registerCheck = function () {
+            socket.emit('register', {
+                pseudo: $('#msg-register').val(),
+                mdp: $('#mdp-register').val()
+            });
+        }
+        socket.on('alert', function (msg) {
+            alert(msg);
+        });
+
+        socket.on('alert-log-good', function (user, msg) {
+            me = user;
+            alert(msg);
+            $("#first").fadeOut();
+        });
+    </script>
     <div class="main-page">
         <div class="top-page">
             <div class="dark-theme-switch">
@@ -36,11 +65,8 @@
             </div>
         </form>
     </div>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
         $(function () {
-            var socket = io();
             /* keypress Enter message*/
             $('#comment').keypress(function (event) {
                 if (event.which == 13 && !event.shiftKey) {
